@@ -1,8 +1,11 @@
 package spittr.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import spittr.web.WebConfig;
+
+import javax.servlet.Filter;
 
 public class SpitterWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
   
@@ -21,4 +24,11 @@ public class SpitterWebInitializer extends AbstractAnnotationConfigDispatcherSer
     return new String[] { "/" };
   }
 
+  @Override
+  protected Filter[] getServletFilters() {
+    CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+    characterEncodingFilter.setEncoding("UTF-8");
+    characterEncodingFilter.setForceEncoding(true);
+    return new Filter[] {characterEncodingFilter};
+  }
 }

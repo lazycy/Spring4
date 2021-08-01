@@ -53,7 +53,7 @@ public class SpitterControllerTest {
     mockMvc.perform(post("/spitter/register"))
         .andExpect(status().isOk())
         .andExpect(view().name("registerForm"))
-        .andExpect(model().errorCount(5))
+        .andExpect(model().errorCount(9))
         .andExpect(model().attributeHasFieldErrors(
             "spitter", "firstName", "lastName", "username", "password", "email"));
   }
